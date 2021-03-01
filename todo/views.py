@@ -12,3 +12,17 @@ def index(request):
             form.save()
         return redirect('/') 
     return render(request,"todo/index.html",{'tasks':tasks,'form':form})
+
+def update(request,pk):
+    task=Task.objects.get(id=pk)
+    form =TaskForm(instance=task)
+    if request.method=="POST":
+        form=TaskForm(request.POST,instance=task)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+
+    return render(request,"todo/updatepage.html",{'form':form,'task':task})
+    
+
+    

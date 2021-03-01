@@ -5,6 +5,15 @@
 <form>
 {% for task in tasks %}
 <div>
+    <a href="{% url 'update_task' task.id %}">update</a>
+    {%if task.complete %}
+    <br>
+    <br>
+    <strike>{{task}}</strike>
+    <br><br>
+    {%else%}
     <h4>{{task}}</h4>
+    {%endif%}
 </div>
 {% endfor %}
+
