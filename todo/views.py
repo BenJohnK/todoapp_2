@@ -25,4 +25,10 @@ def update(request,pk):
     return render(request,"todo/updatepage.html",{'form':form,'task':task})
     
 
-    
+def delete(request,pk):
+    task=Task.objects.get(id=pk)
+    # task.delete()
+    if request.method=="POST":
+        task.delete()
+        return redirect('/')
+    return render(request,"todo/deletepage.html",{'task':task})
